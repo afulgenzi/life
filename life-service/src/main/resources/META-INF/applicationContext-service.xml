@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        ">
+
+    <bean id="barclaysBank" class="java.lang.String">
+        <constructor-arg value="barclays"/>
+    </bean>
+    <bean id="lloydsBank" class="java.lang.String">
+        <constructor-arg value="lloyds"/>
+    </bean>
+    <bean id="intesaBank" class="java.lang.String">
+        <constructor-arg value="intesa"/>
+    </bean>
+
+    <import resource="classpath:/META-INF/applicationContext-model.xml" />
+
+    <util:properties id="lifeServiceProperties" location="classpath:/life-service.properties" />
+    
+    <!--<bean id="bankService" class="com.fulg.life.service.impl.DefaultBankService" />-->
+    <!--<bean id="bankAccountService" class="com.fulg.life.service.impl.DefaultBankAccountService" />-->
+    <!--<bean id="bankAccountOwnerService" class="com.fulg.life.service.impl.DefaultBankAccountOwnerService" />-->
+    <!--<bean id="bankAccountMovementService" class="com.fulg.life.service.impl.DefaultBankAccountMovementService" />-->
+    <!--<bean id="bankTransferService" class="com.fulg.life.service.impl.DefaultBankTransferService" />-->
+    <!--<bean id="userService" class="com.fulg.life.service.impl.DefaultUserService" />-->
+    <!--<bean id="currencyService" class="com.fulg.life.service.impl.DefaultCurrencyService" />-->
+    <!--<bean id="roleService" class="com.fulg.life.service.impl.DefaultRoleService" />-->
+    <!--<bean id="sessionService" class="com.fulg.life.service.impl.DefaultSessionService" />-->
+    <context:component-scan base-package="com.fulg.life.service" />
+
+    <context:component-scan base-package="com.fulg.life.service.setup">
+        <!--<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>-->
+    </context:component-scan>
+</beans>

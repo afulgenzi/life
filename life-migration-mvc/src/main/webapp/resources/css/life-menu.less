@@ -1,0 +1,38 @@
+@backMenu: #1D7471;
+@backMenuOver: #009895;
+
+.menudiv {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	background-color: @backMenu;
+}
+
+.menu {
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	list-style-type: none;
+}
+
+.menuitem {
+	float: left;
+	width: 170px;
+}
+
+.menuitem a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.menuitem a:hover {
+	background-color: @backMenuOver;
+}
+
+.menuitem a:link,a:active,a:visited {
+	color: white;
+}

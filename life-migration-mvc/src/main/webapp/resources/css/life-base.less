@@ -1,0 +1,45 @@
+@backHeader: #006561;
+@backLeft: #5ccdc9;
+@backContent: #aaa;
+@backFooter: #006561;
+
+html,body {
+	margin: 0;
+	padding: 0;
+	background-color: @backContent;
+}
+
+select,option {
+	font-family: courier-new, sans-serif;
+	font-size: 12px;
+	line-height: 1.7em;
+	border: 0;
+}
+
+.header {
+	height: 120px;
+	width: 100%;
+	background-color: @backHeader;
+	position: relative;
+	border: 0px;
+	padding: 0px;
+}
+
+.footer {
+	height: 100px;
+	width: 100%;
+	background-color: @backFooter;
+	clear: left;
+}
+
+.leftcolumn {
+	height: 400px;
+	width: 10%;
+	float: left;
+	background-color: @backLeft;
+}
+
+.dbTableName {
+	font-family: courier-new, sans-serif;
+	font-size: 10px;
+}

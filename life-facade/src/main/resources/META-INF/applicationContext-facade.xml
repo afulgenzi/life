@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		">
+		
+    <util:properties id="lifeFacadeProperties" location="classpath:/life-facade.properties" />
+
+    <import resource="classpath*:/META-INF/applicationContext-service.xml" />
+    
+    <bean id="bankAccountFacade" class="com.fulg.life.facade.impl.BankAccountFacadeImpl" />
+    <bean id="bankAccountMovementFacade" class="com.fulg.life.facade.impl.BankAccountMovementFacadeImpl" />
+    <bean id="bankTransferFacade" class="com.fulg.life.facade.impl.BankTransferFacadeImpl" />
+    <bean id="dateTimeFacade" class="com.fulg.life.facade.impl.DateTimeFacadeImpl" />
+    <bean id="currencyFacade" class="com.fulg.life.facade.impl.CurrencyFacadeImpl" />
+    <bean id="importBankAccountMovementFacade" class="com.fulg.life.facade.impl.ImportBankAccountMovementFacadeImpl" />
+    <bean id="categoryFacade" class="com.fulg.life.facade.impl.CategoryFacadeImpl" />
+    <bean id="invoiceFacade" class="com.fulg.life.facade.impl.InvoiceFacadeImpl" />
+    <bean id="invoicePaymentFacade" class="com.fulg.life.facade.impl.InvoicePaymentFacadeImpl" />
+
+	<!-- CONVERTERS -->
+    <bean id="bankAccountMovementConverter" class="com.fulg.life.facade.converter.BankAccountMovementConverter"/>
+    <bean id="bankAccountConverter" class="com.fulg.life.facade.converter.BankAccountConverter" />
+    <bean id="bankTransferConverter" class="com.fulg.life.facade.converter.BankTransferConverter" />
+    <bean id="userConverter" class="com.fulg.life.facade.converter.UserConverter" />
+    <bean id="currencyConverter" class="com.fulg.life.facade.converter.CurrencyConverter" />
+    <bean id="lloydsImportMovementFromTxtConverter" class="com.fulg.life.facade.converter.LloydsImportMovementFromTxtConverter"/>
+    <bean id="lloydsImportMovementFromCsvConverter" class="com.fulg.life.facade.converter.LloydsImportMovementFromCsvConverter"/>
+    <bean id="barclaysImportMovementFromCsvConverter" class="com.fulg.life.facade.converter.BarclaysImportMovementFromCsvConverter"/>
+    <bean id="intesaImportMovementFromCsvConverter" class="com.fulg.life.facade.converter.IntesaImportMovementFromCsvConverter"/>
+    <bean id="bankConverter" class="com.fulg.life.facade.converter.BankConverter" />
+    <bean id="categoryConverter" class="com.fulg.life.facade.converter.CategoryConverter" />
+    <bean id="categoryTreeConverter" class="com.fulg.life.facade.converter.CategoryTreeConverter" />
+    <bean id="frequencyTypeConverter" class="com.fulg.life.facade.converter.FrequencyTypeConverter" />
+    <bean id="invoiceConverter" class="com.fulg.life.facade.converter.InvoiceConverter" />
+
+	<!-- REVERSE CONVERTERS -->
+    <bean id="bankAccountReverseConverter" class="com.fulg.life.facade.converter.reverse.BankAccountReverseConverter" />
+    <bean id="bankAccountMovementReverseConverter" class="com.fulg.life.facade.converter.reverse.BankAccountMovementReverseConverter" />
+    <bean id="bankTransferReverseConverter" class="com.fulg.life.facade.converter.reverse.BankTransferReverseConverter" />
+    <bean id="userReverseConverter" class="com.fulg.life.facade.converter.reverse.UserReverseConverter" />
+    <bean id="currencyReverseConverter" class="com.fulg.life.facade.converter.reverse.CurrencyReverseConverter" />
+    <bean id="categoryReverseConverter" class="com.fulg.life.facade.converter.reverse.CategoryReverseConverter" />
+    <bean id="invoiceReverseConverter" class="com.fulg.life.facade.converter.reverse.InvoiceReverseConverter" />
+
+	<!-- STRATEGIES -->
+    <bean id="bankAccountMovementImportStrategy" class="com.fulg.life.facade.strategy.impl.DefaultBankAccountMovementParseStrategy">
+        <property name="converters">
+            <map>
+                <!--  <entry key-ref="lloydsBank" value-ref="lloydsImportMovementFromTxtConverter"/> -->
+                <entry key-ref="lloydsBank" value-ref="lloydsImportMovementFromCsvConverter"/>
+                <entry key-ref="barclaysBank" value-ref="barclaysImportMovementFromCsvConverter"/>
+                <entry key-ref="intesaBank" value-ref="intesaImportMovementFromCsvConverter"/>
+            </map>
+        </property>
+        <property name="splitters">
+            <map>
+                <entry key-ref="lloydsBank">
+                    <bean class="com.fulg.life.facade.strategy.impl.NewLineBankMovementSplitterStrategy"/>
+                </entry>
+                <entry key-ref="barclaysBank">
+                    <bean class="com.fulg.life.facade.strategy.impl.NewLineBankMovementSplitterStrategy"/>
+                </entry>
+                <entry key-ref="intesaBank">
+                    <bean class="com.fulg.life.facade.strategy.impl.DateBreakBankMovementSplitterStrategy"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="bankTransferIdentifierStrategy" class="com.fulg.life.facade.strategy.impl.DefaultBankTransferIdentifierStrategy">
+	    <property name="importBankAccountMap">
+		    <!--<map>-->
+		    	<!--<entry key-ref="intesaBank">-->
+				    <!--<map>-->
+				    	<!--<entry key="Ale">-->
+                            <!--<list>-->
+                                <!--<value>Bonifico In Euro Da Paesi Ue/Sepa</value>-->
+                                <!--<value>bonifico A Vostro Favore Disposto Da:Mitt.: Alessandro Fulgenzibenef.: Fulgenzi Alessandro</value>-->
+                            <!--</list>-->
+                        <!--</entry>-->
+				    	<!--<entry key="5455">-->
+                            <!--<list>-->
+                                <!--<value>A Favore Del C/C 00005455</value>-->
+                                <!--<value>Da C/C 00005455</value>-->
+                            <!--</list>-->
+                        <!--</entry>-->
+				    	<!--<entry key="5056">-->
+                            <!--<list>-->
+                                <!--<value>A Favore Del C/C 00005056</value>-->
+                                <!--<value>Da C/C 00005056</value>-->
+                            <!--</list>-->
+                        <!--</entry>-->
+				    <!--</map>-->
+		    	<!--</entry>-->
+		    	<!--<entry key-ref="lloydsBank">-->
+				    <!--<map>-->
+				    	<!--<entry key="AleSimo" value="309966 52272960"/>-->
+				    	<!--<entry key="Ale" value="309966 48977968"/>-->
+				    	<!--<entry key="Flastech" value="FLASTECH LTD"/>-->
+				    	<!--<entry key="5056" value="TRANSFERWISE"/>-->
+				    <!--</map>-->
+		    	<!--</entry>-->
+		    	<!--<entry key-ref="barclaysBank">-->
+				    <!--<map>-->
+				    	<!--<entry key="AleSimo" value="SIMONA MORABITO"/>-->
+				    <!--</map>-->
+		    	<!--</entry>-->
+		    <!--</map>-->
+		    <map>
+                <!-- Intesa -->
+                <entry key="Bonifico In Euro Da Paesi Ue/Sepa">
+                    <map>
+                        <entry key="intesa:*" value="Ale"/>
+                    </map>
+                </entry>
+                <entry key="bonifico A Vostro Favore Disposto Da:Mitt.: Alessandro Fulgenzibenef.: Fulgenzi Alessandro">
+                    <map>
+                        <entry key="intesa:*" value="Ale"/>
+                    </map>
+                </entry>
+                <entry key="A Favore Del C/C 00005455">
+                    <map>
+                        <entry key="intesa:*" value="5455"/>
+                    </map>
+                </entry>
+                <entry key="Da C/C 00005455">
+                    <map>
+                        <entry key="intesa:*" value="5455"/>
+                    </map>
+                </entry>
+                <entry key="A Favore Del C/C 00005056">
+                    <map>
+                        <entry key="intesa:*" value="5056"/>
+                    </map>
+                </entry>
+                <entry key="Da C/C 00005056">
+                    <map>
+                        <entry key="intesa:*" value="5056"/>
+                    </map>
+                </entry>
+                <!-- Lloyds -->
+                <entry key="309966 52272960">
+                    <map>
+                        <entry key="lloyds:*" value="AleSimo"/>
+                    </map>
+                </entry>
+                <entry key="309966 48977968">
+                    <map>
+                        <entry key="lloyds:*" value="Ale"/>
+                    </map>
+                </entry>
+                <entry key="FLASTECH LTD">
+                    <map>
+                        <entry key="lloyds:*" value="Flastech"/>
+                    </map>
+                </entry>
+                <entry key="TRANSFERWISE">
+                    <map>
+                        <entry key="lloyds:*" value="5056"/>
+                    </map>
+                </entry>
+                <entry key="A FULGENZI">
+                    <map>
+                        <entry key="lloyds:Ale" value="AleSimo"/>
+                        <entry key="lloyds:AleSimo" value="Ale"/>
+                    </map>
+                </entry>
+                <!-- Barclays -->
+                <entry key="SIMONA MORABITO">
+                    <map>
+                        <entry key="barclays:*" value="AleSimo"/>
+                    </map>
+                </entry>
+                <entry key="204141 63842312       MOBILE-CHANNEL">
+                    <map>
+                        <entry key="barclays:Flastech" value="Flastech (Saver)"/>
+                    </map>
+                </entry>
+                <entry key="204141 73575217       MOBILE-CHANNEL">
+                    <map>
+                        <entry key="barclays:Flastech (Saver)" value="Flastech"/>
+                    </map>
+                </entry>
+		    </map>
+	    </property>
+    </bean>
+    <bean id="findMatchingMovementsStrategy" class="com.fulg.life.facade.strategy.impl.DefaultFindMatchingMovementsStrategy"/>
+    <bean id="bankMovementToMapStrategy" class="com.fulg.life.facade.strategy.impl.DefaultBankMovementToMapStrategy"/>
+    
+</beans>

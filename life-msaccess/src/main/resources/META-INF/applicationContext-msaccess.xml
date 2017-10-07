@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:util="http://www.springframework.org/schema/util" 
+    xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd 
+		">
+
+    <util:properties id="lifeMsAccessProperties" location="classpath:/life-msaccess.properties" />
+    
+    <bean id="accessAppuntamentiDao" class="com.fulg.life.msaccess.dao.AccessAppuntamentiDao" />
+    <bean id="accessContrattiDao" class="com.fulg.life.msaccess.dao.AccessContrattiDao" />
+    <bean id="accessConsuntiviDao" class="com.fulg.life.msaccess.dao.AccessConsuntiviDao" />
+    <bean id="accessEntrateUsciteDao" class="com.fulg.life.msaccess.dao.AccessEntrateUsciteDao" >
+        <property name="accessValuteDao" ref="accessValuteDao" />
+    </bean>
+    <bean id="accessEUMasterDao" class="com.fulg.life.msaccess.dao.AccessEUMasterDao" />
+    <bean id="accessFestivitaDao" class="com.fulg.life.msaccess.dao.AccessFestivitaDao" />
+    <bean id="accessFestivitaFisseDao" class="com.fulg.life.msaccess.dao.AccessFestivitaFisseDao" />
+    <bean id="accessScadenzeDao" class="com.fulg.life.msaccess.dao.AccessScadenzeDao" />
+    <bean id="accessScadenzeMasterDao" class="com.fulg.life.msaccess.dao.AccessScadenzeMasterDao" />
+    <bean id="accessTabClientiDao" class="com.fulg.life.msaccess.dao.AccessTabClientiDao" />
+    <bean id="accessTabFattureDao" class="com.fulg.life.msaccess.dao.AccessTabFattureDao" />
+    <bean id="accessTabFatturePerStampaDao" class="com.fulg.life.msaccess.dao.AccessTabFatturePerStampaDao" />
+    <bean id="accessTabGiorniDao" class="com.fulg.life.msaccess.dao.AccessTabGiorniDao" />
+    <bean id="accessTabPeriodiDao" class="com.fulg.life.msaccess.dao.AccessTabPeriodiDao" />
+    <bean id="accessValuteDao" class="com.fulg.life.msaccess.dao.AccessValuteDao" />
+</beans>

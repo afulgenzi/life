@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
+		">
+
+	<import resource="classpath*:/META-INF/applicationContext-model.xml" />
+	<import resource="classpath*:/META-INF/applicationContext-msaccess.xml" />
+	<import resource="classpath*:/META-INF/applicationContext-facade.xml" />
+	<import resource="classpath*:/META-INF/applicationContext-service.xml" />
+
+	<!-- VARIABLES -->
+
+	<!-- <bean id="migrationPackages" class="java.util.ArrayList"> -->
+	<!-- <constructor-arg> -->
+	<!-- <list> -->
+	<!-- <value type="java.lang.String">ALL</value> -->
+	<!-- </list> -->
+	<!-- </constructor-arg> -->
+	<!-- </bean> -->
+	<bean class="com.fulg.life.migration.packages.PackageMapping">
+		<property name="packageName" value="ALL" />
+		<property name="beanMapping">
+			<map>
+				<description></description>
+				<entry key="1" value-ref="valuteToCurrencyMigrator" />
+				<entry key="2" value-ref="roleMigrator" />
+				<entry key="3" value-ref="userMigrator" />
+				<entry key="4" value-ref="userRoleMigrator" />
+				<entry key="5" value-ref="bankAccountMigrator" />
+				<entry key="6" value-ref="entrateUsciteToBankAccountMovementMigrator" />
+			</map>
+		</property>
+	</bean>
+	<bean class="com.fulg.life.migration.packages.PackageMapping">
+		<property name="packageName" value="Currency" />
+		<property name="beanMapping">
+			<map>
+				<description></description>
+				<entry key="1" value-ref="valuteToCurrencyMigrator" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- FACADES -->
+
+	<bean id="migrationFacade" class="com.fulg.life.migration.facade.impl.MigrationFacadeImpl">
+	</bean>
+
+	<bean id="legacyFacade" class="com.fulg.life.migration.facade.impl.LegacyFacadeImpl">
+	</bean>
+
+	<bean id="newModelFacade" class="com.fulg.life.migration.facade.impl.NewModelFacadeImpl">
+		<property name="repositoryLocator" ref="repositoryLocator"></property>
+		<property name="entityList">
+			<list>
+				<value>GenericItem</value>
+				<value>BankAccount</value>
+				<value>BankAccountMovement</value>
+				<value>Currency</value>
+				<value>Duty</value>
+				<value>FinancialDuty</value>
+				<value>Memo</value>
+				<value>Note</value>
+				<value>Role</value>
+				<value>User</value>
+				<value>UserRole</value>
+			</list>
+		</property>
+		<property name="newModelConverter" ref="newModelConverter"></property>
+	</bean>
+
+	<!-- CONVERTERS -->
+
+	<util:map id="itemTypeMap">
+		<entry key="GenericItem" value-ref="genericItemPopulator" />
+		<entry key="BankAccount" value-ref="bankAccountPopulator" />
+		<entry key="BankAccountMovement" value-ref="bankAccountMovementPopulator" />
+		<entry key="Currency" value-ref="currencyPopulator" />
+		<entry key="Duty" value-ref="dutyPopulator" />
+		<entry key="Role" value-ref="rolePopulator" />
+		<entry key="User" value-ref="userPopulator" />
+		<entry key="UserRole" value-ref="userRolePopulator" />
+	</util:map>
+
+	<bean id="newModelConverter"
+		class="com.fulg.life.migration.converter.impl.NewModelConverterImpl">
+		<property name="populators" ref="itemTypeMap" />
+	</bean>
+
+	<bean id="itemPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.ItemPopulator">
+		<property name="populators" ref="itemTypeMap" />
+	</bean>
+	<bean id="genericItemPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.GenericItemPopulator" parent="itemPopulator" />
+	<bean id="dutyPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.DutyPopulator" parent="itemPopulator" />
+	<bean id="currencyPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.CurrencyPopulator" parent="itemPopulator" />
+	<bean id="bankAccountPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.BankAccountPopulator" parent="itemPopulator" />
+	<bean id="bankAccountMovementPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.BankAccountMovementPopulator" parent="itemPopulator" />
+	<bean id="userPopulator"
+		class="com.fulg.life.migration.converter.populator.impl.UserPopulator" parent="itemPopulator" />
+	<bean id="rolePopulator"
+		class="com.fulg.life.migration.converter.populator.impl.RolePopulator" parent="itemPopulator" />
+	<bean id="userRolePopulator"
+		class="com.fulg.life.migration.converter.populator.impl.UserRolePopulator" parent="itemPopulator" />
+
+	<!-- SERVICES -->
+
+	<bean id="valuteToCurrencyMigrator"
+		class="com.fulg.life.migration.service.impl.ValuteToCurrencyMigrator" />
+	<bean id="userMigrator" class="com.fulg.life.migration.service.impl.UserMigrator" />
+	<bean id="roleMigrator" class="com.fulg.life.migration.service.impl.RoleMigrator" />
+	<bean id="userRoleMigrator" class="com.fulg.life.migration.service.impl.UserRoleMigrator" />
+	<bean id="bankAccountMigrator"
+		class="com.fulg.life.migration.service.impl.BankAccountMigrator" />
+	<bean id="entrateUsciteToBankAccountMovementMigrator"
+		class="com.fulg.life.migration.service.impl.EntrateUsciteToBankAccountMovementMigrator" />
+
+</beans>

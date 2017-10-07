@@ -1,0 +1,2 @@
+mvn -Ptest install
+pause

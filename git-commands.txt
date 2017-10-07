@@ -1,0 +1,15 @@
+# check status
+git status
+
+# stage files
+git add .
+
+# commi
+git commit -m "my comment"
+
+# push
+git push
+
+# force push
+./force-push.sh
+

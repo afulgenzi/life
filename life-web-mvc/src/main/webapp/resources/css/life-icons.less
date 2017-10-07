@@ -1,0 +1,44 @@
+@import url("life-base.less");
+
+@baseWidth: 34px;
+
+.icon {
+	height: 24px;
+	width: 24px;
+	//background: #fff;
+	//background-image: url('table-icons-small.jpg');
+}
+
+/* A base class now exists that pulls the proper image that contains the sprites as well as defines the height and width of the container */
+/* 	. Next,we need to create a */
+/* class that will display the given icon from the image . I like to break this out by icon type */
+/* 	. Here are the classes I set up for this image . */
+
+.icon-save {
+	background-position: -(1 * @baseWidth) -(0 * @baseWidth);
+}
+
+.icon-new {
+	//background-position: -(4 * @baseWidth) -(4 * @baseWidth);
+	icon: url('images/add.png');
+	background: #f00;
+}
+
+.icon-cancel {
+	background-position: -(6*@baseWidth) -(4*@baseWidth);
+}
+
+.icon-edit {
+	//background-position: -(2*@baseWidth) -(6*@baseWidth);
+	background-image: url('images/edit.jpg');
+	background: #0f0;
+}
+
+.icon-delete {
+	//background-position: -(5*@baseWidth) -(4*@baseWidth);
+	background-image: url('images/delete.jpg');
+	background: #00f;
+}
+.btn-group{
+	width: 80px;
+}

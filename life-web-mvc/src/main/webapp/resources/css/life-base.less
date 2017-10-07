@@ -1,0 +1,399 @@
+@backNav: #7989fe;
+@backNavItem: #4959fe;
+@backDisabled: #dddddd;
+@colorDisabled: #333;
+@warGradientFrom: #777;
+@warGradientTo: #aaa;
+
+#container {
+  margin: 0 auto;
+  width: 100%;
+  background: #fff;
+}
+
+#header {
+  background: #ccc;
+  padding: 20px;
+}
+
+#header h1 {
+  margin: 0;
+}
+
+#navigation {
+  float: left;
+  width: 100%;
+  background: @backNav;
+}
+
+#navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+#navigation ul li {
+  list-style-type: none;
+  display: inline;
+}
+
+#navigation li a {
+  display: block;
+  float: left;
+  padding: 5px 10px;
+  color: #fff;
+  text-decoration: none;
+  border-right: 1px solid #fff;
+}
+
+#navigation li a:hover {
+  background: @backNavItem
+}
+
+.userId {
+  display: block;
+  float: right;
+  padding: 5px 10px;
+  text-decoration: underline;
+  padding-top: 15px;
+}
+
+#content-container {
+  float: left;
+  width: 100%;
+  background: #FFF;
+  //background: #FFF url(layout-two-liquid-background.gif) repeat-y 68% 0;
+}
+
+#content {
+  clear: left;
+  float: left;
+  width: 80%;
+  padding: 0 0;
+  margin: 0 0 0 0;
+  display: inline;
+}
+
+#content h2 {
+  margin: 0;
+}
+
+#aside {
+  float: right;
+  width: 20%;
+  padding: 0 0;
+  margin: 0 0 0 0;
+  display: inline;
+}
+
+#aside h3 {
+  margin: 0;
+}
+
+#footer {
+  clear: left;
+  background: #ccc;
+  text-align: center;
+  padding: 20px;
+  height: 1%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.disabled {
+  //background: @backDisabled;
+  //color: @colorDisabled;
+  opaque: 1;
+}
+
+.aside-table-a {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 1.5em;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  padding: 8px;
+}
+
+.aside-table-a th {
+  font-size: 13px;
+  font-weight: normal;
+  margin: 8px;
+  background: #b8bdbf;
+  border-top: 4px solid #aabcfe;
+  border-bottom: 1px solid #fff;
+  color: #039;
+}
+
+.aside-table-a td {
+  background: #d8dddf;
+  border-bottom: 1px solid #fff;
+  color: #669;
+  border-top: 1px solid transparent;
+}
+
+.aside-filter-title {
+  font-size: 13px;
+  font-weight: normal;
+  color: blue;
+}
+
+.aside-filter-button {
+  right: 0px;
+}
+
+.negative-balance {
+  color: red;
+}
+
+.negative-amount {
+  color: #AA2222;
+}
+
+.positive-amount {
+  color: #008800;
+}
+
+.positive-amount {
+  color: #008800;
+}
+
+.transfer-movement-class {
+  color: lightgray;
+}
+
+.light-view-class {
+  color: lightgray;
+}
+
+.btn-month {
+  width: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.clickable {
+  z-index: 1;
+}
+
+.cockpit-description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.taphover:hover, div.taphover.hover {
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.life-checkbox input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  position: relative;
+  top: -8px;
+  font-size: 18px;
+  //width: 13px;
+  //height: 13px;
+  //padding: 0;
+  //margin: 0;
+  //vertical-align: bottom;
+  //position: relative;
+  //*overflow: hidden;
+  vertical-align: middle;
+}
+
+.life-checkbox input[type='checkbox']:checked {
+  background: #888;
+}
+
+.life-checkbox label {
+  display: block;
+  padding-top: 20px;
+  padding-left: 24px;
+  text-indent: 10px;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.life-radio input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  position: relative;
+  top: -6px;
+  font-size: 18px;
+  //width: 13px;
+  //height: 13px;
+  //padding: 0;
+  //margin: 0;
+  //vertical-align: bottom;
+  //position: relative;
+  //*overflow: hidden;
+  vertical-align: middle;
+}
+
+.life-radio input[type='radio']:checked {
+  background: #888;
+}
+
+.life-radio label {
+  display: block;
+  padding-top: 20px;
+  padding-left: 24px;
+  text-indent: 10px;
+  vertical-align: middle;
+  font-size: 14px;
+  top: -10px;
+  position: relative;
+}
+
+.import-candidate {
+  height: 45px;
+  position: relative;
+  font-size: 16px;
+  vertical-align: middle;
+  top: 0px;
+  margin-top: 10px;
+  padding: 0px;
+  padding-top: 1px;
+}
+
+.account-checkbox-label,.account-checkbox-label {
+  font-size: 1.0em;
+}
+
+@media only screen and (min-width: 1050px) and (max-width: 1149px) {
+  .account-checkbox-label {
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1049px) {
+  .account-checkbox-label {
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 449px) {
+  .account-checkbox-label {
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 399px) {
+  .account-checkbox-label {
+    font-size: 0.8em;
+  }
+}
+
+div#loading-background {
+  display: none;
+  z-index: 2;
+  background: #444;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  display: block;
+  opacity: 0.8;
+}
+
+.ajax-loader {
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px; /* -1 * image width / 2 */
+  margin-top: -50px; /* -1 * image height / 2 */
+}
+
+.input-sm {
+  margin-bottom: 10px;
+  background-color: #f7ecb5;
+}
+
+//.nav-pills > li > a {
+//	border-radius: 4px;
+//	background-color: #d0edff;
+//}
+
+// Background Color for not active tab
+// style="background-color: #d0edff" -->
+.nav-pills > li:not(.active) > a,
+.nav-pills > li:not(.active) > a:hover,
+.nav-pills > li:not(.active) > a:focus {
+  color: #428bca;
+  background-color: #eee;
+}
+
+.chevron-left {
+  vertical-align: middle;
+}
+
+.glyphicon.glyphicon-chevron-left {
+  font-size: 24px;
+}
+
+.glyphicon.glyphicon-chevron-right {
+  font-size: 24px;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.uncategorised {
+  //border: dotted;
+  //border: double;
+  border: groove;
+  //border: ridge;
+  //border: solid;
+  border-color: red;
+}
+
+.checkbox-inline {
+}
+
+@media only screen and (min-width: 992px) {
+  .sidebar-collapse {
+    display: block;
+  }
+}
+
+.panel-war > .panel-heading {
+  color: #fff;
+  background-image: -webkit-linear-gradient(top, @warGradientTo 0%, @warGradientFrom 100%);
+  background-image:         linear-gradient(to bottom, @warGradientTo 0%, @warGradientFrom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffebcccc', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+.cockpit-item-group {
+  display: table;
+}
+
+.cockpit-item {
+  float: none;
+  display: table-cell;
+  overflow: hidden;
+}
+
+.invoice-item {
+  font-size: large;
+}
+
+.different-days {
+  color: red;
+}

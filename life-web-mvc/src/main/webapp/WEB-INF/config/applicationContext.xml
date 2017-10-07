@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
+		http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		">
+
+	<!-- <import resource="classpath*:/META-INF/applicationContext-model.xml" /> -->
+	<!-- <import resource="classpath*:/META-INF/applicationContext-msaccess.xml" /> -->
+	<import resource="classpath*:/META-INF/applicationContext-facade.xml" />
+	<import resource="classpath*:/META-INF/applicationContext-service.xml" />
+
+    <ehcache:annotation-driven cache-manager="cacheManager" />
+    
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="/WEB-INF/config/ehcache.xml" />
+	</bean>
+
+<!--	<util:properties id="lifeWebProperties" location="classpath:/life-web.properties" /> -->
+<!-- 	<ehcache:config cache-manager="cacheManager"> -->
+<!--         <ehcache:evict-expired-elements interval="60" /> -->
+<!--     </ehcache:config> -->
+    
+ </beans>

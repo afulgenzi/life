@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+    <defaultCache eternal="true" maxElementsInMemory="100" overflowToDisk="false" />
+    <cache name="messageCache" maxElementsInMemory="10" eternal="true" overflowToDisk="false" />
+    <cache name="messagesCache" maxElementsInMemory="10" eternal="true" overflowToDisk="false" />
+    <cache name="currencyGetAll" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="600"
+ 		memoryStoreEvictionPolicy="LRU" />
+    <cache name="currencyGetOne" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="600"
+ 		memoryStoreEvictionPolicy="LRU" />
+    <cache name="currencyGetByCode" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="600" timeToIdleSeconds="1000"
+ 		memoryStoreEvictionPolicy="LRU" />
+    <cache name="currencyGetEuro" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="6000"
+ 		memoryStoreEvictionPolicy="LRU" />
+    <cache name="currencyGetLire" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="6000"
+ 		memoryStoreEvictionPolicy="LRU" />
+    <cache name="currencyGetPound" eternal="false"
+ 		maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+ 		timeToLiveSeconds="6000"
+ 		memoryStoreEvictionPolicy="LRU" />
+
+	<!-- Bank -->
+	<cache name="bankGetAll" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LRU" />
+	<cache name="bankGetOne" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LRU" />
+	<cache name="bankGetByCode" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600" timeToIdleSeconds="1000"
+		   memoryStoreEvictionPolicy="LRU" />
+
+	<!-- FrequencyType -->
+	<cache name="frequencyTypeGetAll" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LRU" />
+	<cache name="frequencyTypeGetOne" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600"
+		   memoryStoreEvictionPolicy="LRU" />
+	<cache name="frequencyTypeGetByCode" eternal="false"
+		   maxElementsInMemory="10" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="600" timeToIdleSeconds="1000"
+		   memoryStoreEvictionPolicy="LRU" />
+
+	<!-- Movements -->
+	<cache name="movementsByMonth" eternal="false"
+		   maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+		   timeToLiveSeconds="10"
+		   memoryStoreEvictionPolicy="LRU" />
+</ehcache>
